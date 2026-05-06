@@ -115,10 +115,10 @@ public class GameEngine {
         scene6.addChoice(new Choice("A", 0, false, null));
         scene6.addChoice(new Choice("B", 0, false, "Explosion ending"));
 
-     //IMPORTANT NOTE: The scenes here are summarized!!
-     //I will be adding the long scenes in the future
-     //Thanks 
-     //-SEBLOS
+       // NOTE:
+       // Scenes are currently summarized for testing purposes.
+       // Full narrative scenes will be added in future updates.
+       // - SEBLOS
 
     }
 }
