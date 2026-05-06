@@ -1,20 +1,27 @@
+import java.util.ArrayList;
+
 public class Scene {
  
     int id;
     String story;
-    Choice choiceA;
-    Choice choiceB;
- 
-    public Scene(int id, String story, Choice choiceA, Choice choiceB) {
+   ArrayList<Choice> choices = new ArrayList<>();
+  
+    public Scene(int id, String story) {
         this.id = id;
         this.story = story;
-        this.choiceA = choiceA;
-        this.choiceB = choiceB;
     }
- 
+    
+    public void addChoice(Choice choice){
+        choices.add(choice);
+    }
+
     public void displayScene() {
-    System.out.println("\n" + story);
-    System.out.println("A. " + choiceA.description);  
-    System.out.println("B. " + choiceB.description);  
+        System.out.println("\n" + story);
+        
+        char option = 'A';
+        for(Choice c : choices){
+            System.out.println(option + ". " + c.description);
+            option++;
+        }
     }
 }

@@ -1,51 +1,48 @@
 import java.util.Scanner;
-
+ 
 public class GameEngine {
  
     Scanner sc = new Scanner(System.in);
-    Scene currentScene;
  
-    Scene scene1, scene2, scene3;
+    Scene currentScene;
+    Scene scene1, scene2, scene3, scene4, scene5;
  
     public void startGame() {
  
         createScenes();
  
         while (true) {
-            // Show main menu
-            System.out.println("\nScenario 1:");
+ 
             System.out.println("A. Start");
             System.out.println("B. Quit");
             System.out.print("Choice: ");
-            
+ 
             String mainChoice = sc.nextLine().toUpperCase();
-            
+ 
             if (mainChoice.equals("A")) {
-                // Reset to scene1 and start the game
+ 
                 currentScene = scene1;
-                
                 boolean gameActive = true;
+ 
                 while (gameActive) {
+ 
                     currentScene.displayScene();
                     System.out.print("Choice: ");
-                    String answer = sc.nextLine().toUpperCase();
-                    
-                    if (answer.equals("A")) {
-                        gameActive = processChoice(currentScene.choiceA);
-                    }
-                    else if (answer.equals("B")) {
-                        gameActive = processChoice(currentScene.choiceB);
-                    }
-                    else {
+ 
+                    String input = sc.nextLine().toUpperCase();
+                    int index = input.charAt(0) - 'A';
+ 
+                    if (index >= 0 && index < currentScene.choices.size()) {
+                        gameActive = processChoice(currentScene.choices.get(index));
+                    } else {
                         System.out.println("Invalid choice.");
                     }
                 }
-            }
-            else if (mainChoice.equals("B")) {
+ 
+            } else if (mainChoice.equals("B")) {
                 System.out.println("Thanks for playing!");
                 System.exit(0);
-            }
-            else {
+            } else {
                 System.out.println("Invalid choice.");
             }
         }
@@ -54,43 +51,50 @@ public class GameEngine {
     public boolean processChoice(Choice choice) {
  
         if (choice.gameOver) {
-            // Show death message
             System.out.println("\n" + choice.deathMessage);
             System.out.println("Game Over");
-            return false; // Game over, go back to main menu
+            return false;
         }
  
-        if (choice.nextScene == 2) {
-            currentScene = scene2;
-        }
-        else if (choice.nextScene == 3) {
-            currentScene = scene3;
-        }
-        
-        return true; // Game continues
+        if (choice.nextScene == 1) currentScene = scene1;
+        else if (choice.nextScene == 2) currentScene = scene2;
+        else if (choice.nextScene == 3) currentScene = scene3;
+        else if (choice.nextScene == 4) currentScene = scene4;
+        else if (choice.nextScene == 5) currentScene = scene5;
+ 
+        return true;
     }
  
     public void createScenes() {
  
-        scene1 = new Scene(
-            1,
-            "You feel your usual path will kill you. Which way do you go?",
-            new Choice("Same Path", 0, true, "An Aircon falls on your head. You died instantly."),
-            new Choice("Different Path", 2, false, null)
-        );
+        //  Scene 1
+        scene1 = new Scene(1, "You feel your usual path will kill you...");
+        scene1.addChoice(new Choice("Same Path", 0, true, "Aircon falls on your head."));
+        scene1.addChoice(new Choice("Different Path", 2, false, null));
  
-        scene2 = new Scene(
-            2,
-            "A dog blocks the road. What do you do?",
-            new Choice("Feed Biscuit", 0, true, "The dog asked for more food, you run out of biscuits, the dog attacked you."),
-            new Choice("Pick Object", 3, false, null)
-        );
+        //  Scene 2
+        scene2 = new Scene(2, "A dog blocks your way...");
+        scene2.addChoice(new Choice("Feed Biscuit", 0, true, "Dog got aggressive."));
+        scene2.addChoice(new Choice("Pick Object", 3, false, null));
  
-        scene3 = new Scene(
-            3,
-            "You survived Scene 2. More danger awaits...",
-            new Choice("Continue", 0, true, "A trap door opens beneath you. You fall into darkness."),
-            new Choice("Run Home", 0, true, "On your way home, you slip and fall off a cliff.")
-        );
+        //  Scene 3 (4 choices allowed now)
+        scene3 = new Scene(3, "You are lost, phone dying...");
+        scene3.addChoice(new Choice("Talk to man", 4, false, null));
+        scene3.addChoice(new Choice("Enter alley", 0, true, "Robber kills you."));
+        scene3.addChoice(new Choice("Wait", 0, true, "Dogs find you."));
+        scene3.addChoice(new Choice("Sing song", 0, true, "Man stabs you."));
+ 
+        //  Scene 4 (4 choices)
+        scene4 = new Scene(4, "The man misleads you...");
+        scene4.addChoice(new Choice("Run", 0, true, "You fall."));
+        scene4.addChoice(new Choice("Shout", 0, true, "Dogs hear you."));
+        scene4.addChoice(new Choice("Climb gate", 0, true, "You fall."));
+        scene4.addChoice(new Choice("Confront man", 5, false, null));
+ 
+        //  Scene 5 (final)
+        scene5 = new Scene(5, "You are close to home...");
+        scene5.addChoice(new Choice("Run home", 0, true, "Hit by car."));
+        scene5.addChoice(new Choice("Walk safely", 6, false, null));
     }
 }
+ 
