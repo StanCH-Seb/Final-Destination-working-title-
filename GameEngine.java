@@ -9,8 +9,8 @@ public class GameEngine {
         Container con;
         JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel;
         JLabel titleNameLabel;
-        Font titleFont = new Font("Courier New", Font.PLAIN, 30);
-        Font normalFont = new Font("Courier New", Font.PLAIN, 25);
+        Font titleFont = new Font("Georgia", Font.PLAIN, 30);
+        Font normalFont = new Font("Georgia", Font.PLAIN, 25);
 
         Scanner sc = new Scanner(System.in);
  
@@ -20,7 +20,9 @@ public class GameEngine {
  
 
     public void startGame() {
-        
+        //To the next person who reads this, I am sorry~~
+        //I know this is a mess, but I will clean it up eventually, I promise.
+
         //the game window...
         window = new JFrame("Final Destination!");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +36,7 @@ public class GameEngine {
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(Color.black);
+        
 
         //Panels for the title and start button...
         titleNamePanel = new JPanel();
@@ -50,14 +53,16 @@ public class GameEngine {
         startButtonPanel = new JPanel();
         startButtonPanel.setBackground(Color.black);
         startButtonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+        startButtonPanel.setOpaque(false);
+        //button deets
         JButton startButton = new JButton("START");
         startButton.setOpaque(false);
         startButton.setContentAreaFilled(false);
         startButton.setBorderPainted(true);
-        startButton.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+        startButton.setBorder(BorderFactory.createLineBorder(Color.red, 2, true));
         startButton.setForeground(Color.white);
         startButton.setFont(normalFont);
+        startButton.setPreferredSize(new Dimension(200, 60));
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -70,7 +75,6 @@ public class GameEngine {
         });
 
         startButtonPanel.add(startButton);
-
         centerPanel.add(Box.createVerticalGlue());
         centerPanel.add(titleNamePanel);
         centerPanel.add(spacer);
@@ -162,15 +166,38 @@ public class GameEngine {
         sceneText.setHorizontalAlignment(SwingConstants.CENTER);
         mainTextPanel.add(sceneText, BorderLayout.CENTER);
 
+        JButton startButton = new JButton("START");
+        startButton.setOpaque(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(true);
+        startButton.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+        startButton.setForeground(Color.white);
+        startButton.setFont(normalFont);
+
         // Choice buttons area at the bottom
         choiceButtonPanel = new JPanel();
         choiceButtonPanel.setBackground(Color.black);
         choiceButtonPanel.setLayout(new BoxLayout(choiceButtonPanel, BoxLayout.Y_AXIS));
         choiceButtonPanel.setBorder(BorderFactory.createEmptyBorder(20, 60, 40, 60));
 
-        gameWindow.add(mainTextPanel, BorderLayout.CENTER);
-        gameWindow.add(choiceButtonPanel, BorderLayout.SOUTH);
-        gameWindow.setVisible(true);
+
+        String[] choices = {"A. Take the same path", "B. Take a different path"};
+        for (String choice : choices) {
+        JButton btn = new JButton(choice);
+        btn.setContentAreaFilled(false);
+        btn.setBorderPainted(true);
+        btn.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+        btn.setForeground(Color.white);
+        btn.setFont(normalFont);
+        btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btn.setMaximumSize(new Dimension(400, 40));
+        choiceButtonPanel.add(btn);
+        choiceButtonPanel.add(Box.createRigidArea(new Dimension(0, 8)));
+    }
+
+    gameWindow.add(mainTextPanel, BorderLayout.CENTER);
+    gameWindow.add(choiceButtonPanel, BorderLayout.SOUTH);
+    gameWindow.setVisible(true);
     }
 
 
