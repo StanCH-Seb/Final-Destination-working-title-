@@ -13,7 +13,7 @@
 | Seblos, Stan Chriven | [StanCH-Seb](https://github.com/StanCH-Seb)|
 | Bitang, John Lysther | [TBA](https://github.com/StanCH-Seb/Final-Destination-working-title-)|
 | Cabuenas, James Bernard | [jamescabuenasne-cmyk](https://github.com/jamescabuenasne-cmyk)|
-| Quinto, Joshua |  [TBA](https://github.com/StanCH-Seb/Final-Destination-working-title-|
+| Quinto, Joshua |  [TBA](https://github.com/StanCH-Seb/Final-Destination-working-title-)|
 | Velez, Stephen Cyber | [TBA](https://github.com/StanCH-Seb/Final-Destination-working-title-)|
 
 ---
