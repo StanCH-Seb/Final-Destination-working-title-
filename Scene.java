@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
  
 public class Scene extends GameObject {
@@ -34,25 +35,3 @@ public class Scene extends GameObject {
         }
     }
 }
-
-// Code before
-// public class Scene {
- 
-//     int id;
-//     String story;
-//     Choice choiceA;
-//     Choice choiceB;
- 
-//     public Scene(int id, String story, Choice choiceA, Choice choiceB) {
-//         this.id = id;
-//         this.story = story;
-//         this.choiceA = choiceA;
-//         this.choiceB = choiceB;
-//     }
- 
-//     public void displayScene() {
-//         System.out.println("\n" + story);
-//         System.out.println("A. " + choiceA.text);
-//         System.out.println("B. " + choiceB.text);
-//     }
-// }
